@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>InstaGrow - Made by Yashu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);color:white;}
+#language,#splash{position:fixed;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(135deg,#141e30,#243b55);z-index:20;}
+#splash{display:none;z-index:10;}
+.langbtn{width:70%;padding:12px;margin:8px;border:none;border-radius:25px;font-size:16px;font-weight:bold;background:#00c6ff;color:black;}
+header{text-align:center;padding:15px;font-size:22px;font-weight:bold;background:rgba(0,0,0,0.4);}
+.page{display:none;padding:15px;}
+.active{display:block;}
+.box{background:rgba(255,255,255,0.08);border-radius:14px;padding:15px;margin-bottom:15px;}
+button{padding:10px 18px;border:none;border-radius:20px;background:#00c6ff;color:black;font-size:15px;font-weight:bold;margin-top:8px;}
+textarea,input,select{width:100%;padding:10px;border-radius:10px;border:none;margin-top:10px;}
+nav{position:fixed;bottom:0;width:100%;display:flex;background:rgba(0,0,0,0.6);}
+nav button{flex:1;border-radius:0;background:none;color:white;}
+.footer{text-align:center;margin-top:20px;opacity:0.8;}
+</style>
+</head>
+
+<body>
+
+<div id="language">
+<h2>Select Language</h2>
+<button class="langbtn" onclick="setLang()">English</button>
+<button class="langbtn" onclick="setLang()">Hindi</button>
+<button class="langbtn" onclick="setLang()">Gujarati</button>
+</div>
+
+<div id="splash">
+<h1>📈 InstaGrow</h1>
+<p>Smart Instagram Growth Tool</p>
+<p><b>Made by Yashu ❤️</b></p>
+</div>
+
+<header>📈 InstaGrow</header>
+
+<div id="home" class="page active">
+
+<div class="box">
+<h3>🔥 Hashtag Generator</h3>
+<input id="topic" placeholder="Enter topic or hashtag">
+<button onclick="genHash()">Generate Hashtags</button>
+<textarea id="hash" rows="4"></textarea>
+<button onclick="copyText('hash')">📋 Copy</button>
+</div>
+
+<div class="box">
+<h3>✍ Smart Caption Generator (30 Words)</h3>
+<button onclick="genCap()">Generate Caption</button>
+<textarea id="cap" rows="6"></textarea>
+<button onclick="copyText('cap')">📋 Copy</button>
+<button onclick="shareInstagram()">📲 Share</button>
+</div>
+
+<div class="box">
+<h3>🎬 Viral Reel Ideas</h3>
+<input id="reelTopic" placeholder="Enter reel topic">
+<button onclick="genReel()">Generate Ideas</button>
+<textarea id="reelIdeas" rows="6"></textarea>
+<button onclick="copyText('reelIdeas')">📋 Copy</button>
+</div>
+
+<div class="box">
+<h3>🎵 Trending Audio Finder</h3>
+<select id="audioCat">
+<option value="motivational">🔥 Motivational</option>
+<option value="sad">😢 Sad</option>
+<option value="funny">😂 Funny</option>
+<option value="romantic">❤️ Romantic</option>
+<option value="attitude">😎 Attitude</option>
+</select>
+<button onclick="findAudio()">Find Audio</button>
+<textarea id="audioList" rows="8"></textarea>
+<button onclick="copyText('audioList')">📋 Copy</button>
+</div>
+
+</div>
+
+<div id="ai" class="page">
+<div class="box">
+<h3>🤖 AI Chatbox</h3>
+<input id="userQ" placeholder="Ask about Instagram growth...">
+<button onclick="aiChat()">Ask AI</button>
+<textarea id="aiAns" rows="6"></textarea>
+</div>
+</div>
+
+<div id="about" class="page">
+<div class="box">
+<h3>ℹ About InstaGrow</h3>
+<p>Grow smarter, not harder 🚀 InstaGrow is your all-in-one Instagram growth buddy 💙  
+Hashtags • Captions • Viral Reels • Trending Audio • Smart AI  
+Simple, fast & powerful 😎</p>
+<div class="footer">✨ Made by <b>Yashu</b> ❤️</div>
+</div>
+</div>
+
+<nav>
+<button onclick="showPage('home')">🏠</button>
+<button onclick="showPage('ai')">🤖</button>
+<button onclick="showPage('about')">ℹ</button>
+</nav>
+
+<script>
+function setLang(){
+document.getElementById("language").style.display="none";
+document.getElementById("splash").style.display="flex";
+setTimeout(()=>{document.getElementById("splash").style.display="none";},2000);
+}
+
+function showPage(p){
+document.querySelectorAll('.page').forEach(pg=>pg.classList.remove("active"));
+document.getElementById(p).classList.add("active");
+}
+
+/* HASHTAG */
+function genHash(){
+let t=topic.value.toLowerCase().trim();
+if(t==""){hash.value="Enter topic first";return;}
+let base=t.replace(/\s+/g,'');
+hash.value="#"+base+" #"+base+"life #"+base+"reels #viral #trending #instagood #explore #india #yashu";
+}
+
+/* 30 WORD SMART CAPTION */
+function genCap(){
+let t=topic.value.toLowerCase().trim();
+if(t==""){ cap.value="Enter topic or hashtag first"; return; }
+
+let data={
+gym:"Push yourself daily, stay disciplined, trust the process, and never quit. Every workout makes you stronger, sharper, and closer to your dream body. Consistency, patience, and dedication always create real fitness transformation 💪🔥",
+travel:"Travel to explore new places, feel new emotions, collect memories, meet new people, and understand life better. Every journey teaches lessons, builds confidence, and fills the heart with happiness 🌍✈️",
+love:"Love deeply, care honestly, trust completely, and stay loyal always. True love creates peace, happiness, emotional strength, and beautiful memories that last forever in every heartbeat and every moment ❤️✨",
+sad:"Sometimes pain teaches life’s strongest lessons, builds inner strength, increases patience, and helps us grow emotionally. Trust the process, stay hopeful, and remember that better days will surely come 🌙🤍",
+motivation:"Dream big, work hard, stay focused, remain disciplined, and never give up. Every small step daily creates powerful success, strong mindset, unstoppable confidence, and a brighter future for life 🚀🔥"
+};
+
+let key="motivation";
+if(t.includes("gym")||t.includes("fitness")) key="gym";
+else if(t.includes("travel")) key="travel";
+else if(t.includes("love")) key="love";
+else if(t.includes("sad")) key="sad";
+
+cap.value=data[key];
+}
+
+/* REEL IDEAS */
+function genReel(){
+let t=reelTopic.value.trim();
+if(t==""){reelIdeas.value="Enter topic first";return;}
+reelIdeas.value=`🔥 Viral Reel Ideas for "${t}":
+
+1) Before vs After
+2) 3 mistakes people make
+3) Day in my life
+4) 5 quick tips
+5) POV struggle to success`;
+}
+
+/* TRENDING SONGS */
+function findAudio(){
+let c=audioCat.value;
+let data={
+motivational:["Zinda Banda","Aarambh Hai Prachand","Kar Har Maidan Fateh","Unstoppable","Believer","Legends Never Die","Rise","Hallabol","Apna Time Aayega","Brothers Anthem"],
+sad:["O Bedardeya","Chaleya (Sad)","Phir Aur Kya Chahiye","Let Me Down Slowly","Khairiyat","Bekhayali","Hamdard","Tum Hi Ho","Agar Tum Saath Ho","Someone You Loved"],
+funny:["Moye Moye Trend","Bas Kar Bassi","Oh Bhai Maro Mujhe","Just Looking Like A Wow","Golmaal Theme","Funny Meme Beats","Aata Majhi Satakli","Garmi Remix","Comedy Viral Sound","What Jhumka Remix"],
+romantic:["Heeriye","Ve Haaniyaan","Kesariya","Chaleya","Ranjha","Satranga","Tum Se Hi","Husn","Raataan Lambiyan","Perfect"],
+attitude:["Born To Shine","Badass","Systumm","Sher Aaya Sher","Kalaastar","Still Rollin","Yalgaar","Legend","On Top","Rolex Theme"]
+};
+audioList.value="🎧 Trending Reels Audios:\n\n"+data[c].map((s,i)=>(i+1)+") "+s).join("\n");
+}
+
+/* AI CHAT */
+function aiChat(){
+let q=userQ.value.toLowerCase();
+let a="Post daily reels, use trending audio, strong hooks, and engage with audience.";
+if(q.includes("follower")) a="Daily reels + trending audio + engagement = fast growth 🔥";
+if(q.includes("hashtag")) a="Use 10–12 niche + trending hashtags.";
+if(q.includes("time")) a="Best time: 7–9 AM & 6–10 PM.";
+if(q.includes("reel")) a="POV, transformation, mini-vlogs & trending audio reels work best 🚀";
+aiAns.value=a;
+}
+
+/* COPY */
+function copyText(id){
+let t=document.getElementById(id);
+t.select();navigator.clipboard.writeText(t.value);
+alert("Copied ✅");
+}
+
+/* SHARE */
+function shareInstagram(){
+let text=cap.value+"\n\n"+hash.value;
+if(text.trim()==""){alert("Generate content first");return;}
+if(navigator.share){navigator.share({text:text});}
+else{alert("Share not supported on this device");}
+}
+</script>
+
+</body>
+</html>
